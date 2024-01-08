@@ -8,7 +8,7 @@ export default function Layout() {
         <>
             <Header/>
 
-            <div className={"border border-white min-h-screen px-[15px] flex flex-col"}>
+            <div className={"min-h-screen px-[15px] flex flex-col"}>
 
                 <Temperature/>
 
