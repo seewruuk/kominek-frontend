@@ -3,7 +3,7 @@ import React, {useState, useRef, useEffect, useContext} from 'react';
 import {StateContext} from "@/context/StateContext";
 
 const TemperatureControl = () => {
-    const {devices, setDevices, selectedDevice} = useContext(StateContext);
+    const {devices, setDevices, selectedDevice,updateDeviceTemperature} = useContext(StateContext);
     const [temperature, setTemperature] = useState(devices[selectedDevice].temperature);
     const handleRef = useRef(null);
     const circleRef = useRef(null);
@@ -41,6 +41,10 @@ const TemperatureControl = () => {
         setTemperature(devices[selectedDevice].temperature)
     }, [selectedDevice]);
 
+    useEffect(() => {
+        updateDeviceTemperature(temperature)
+    }, [temperature]);
+
     const calculateAngle = (clientX, clientY) => {
         const circleRect = circleRef.current.getBoundingClientRect();
         const centerX = circleRect.left + circleRect.width / 2;
@@ -48,14 +52,12 @@ const TemperatureControl = () => {
         const radians = Math.atan2(clientY - centerY, clientX - centerX);
         let angle = radians * (180 / Math.PI);
 
-        // Normalize the angle to 0-360 range
         angle = angle < 0 ? 360 + angle : angle;
 
         return angle;
     };
 
     const angleToTemperature = (angle) => {
-        // Mapping angle to temperature with 0.5 increments
         const tempRange = maxTemperature - minTemperature;
         const temp = (angle / 360) * tempRange * 2;
         return minTemperature + Math.round(temp) / 2;
@@ -67,6 +69,7 @@ const TemperatureControl = () => {
         const newTemperature = angleToTemperature(angle);
 
         setTemperature(newTemperature);
+
 
         const handleMouseMove = (moveEvent) => {
             const moveAngle = calculateAngle(moveEvent.clientX, moveEvent.clientY);
@@ -136,7 +139,7 @@ const TemperatureControl = () => {
                     </text>
                     <text x="50%" y="50%" textAnchor="middle" dy="1rem" dx="-0px" fill={"#fff"} fontSize={"38px"}>
                         {
-                            devices[selectedDevice].temperature
+                            temperature
                         }°C
                     </text>
                     {/*<text x="50%" y="50%" textAnchor="middle" dy="0rem" dx="2.5rem" fill={"#fff"} fontSize={"19px"}>*/}
