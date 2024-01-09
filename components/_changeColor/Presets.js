@@ -6,29 +6,28 @@ export default function Presets() {
 
     const {devices, selectedDevice, applyPreset} = useContext(StateContext);
     const maxPresets = 5;
-    const presetsToFill = maxPresets - devices[selectedDevice].savedColorPresets.length;
-
-
+    const presetsToFill = devices[selectedDevice].savedColorPresets ? maxPresets - devices[selectedDevice].savedColorPresets.length : maxPresets;
 
 
     return (
         <>
-            {
-                devices[selectedDevice].savedColorPresets ? (
                     <div>
                         <div className={"flex justify-between py-6 font-[500]"}>
                             <label>Zapisane</label>
                             <label>
                                 {
-                                    devices[selectedDevice].savedColorPresets.length
+                                    devices[selectedDevice].savedColorPresets ? devices[selectedDevice].savedColorPresets.length : 0
                                 }
                                 /5
                             </label>
 
                         </div>
+
+
+
                         <div className={"flex flex-col gap-2"}>
                             {
-                                devices[selectedDevice].savedColorPresets.map((item, index) => {
+                                devices[selectedDevice].savedColorPresets && devices[selectedDevice].savedColorPresets.map((item, index) => {
 
                                     let a;
                                     const x = item.preset.name;
@@ -81,8 +80,6 @@ export default function Presets() {
 
                     </div>
                 </div>
-                ) : null
-            }
         </>
     )
 }
