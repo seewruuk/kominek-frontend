@@ -30,7 +30,7 @@ export default function Presets() {
                                 devices[selectedDevice].savedColorPresets && devices[selectedDevice].savedColorPresets.map((item, index) => {
 
                                     let a;
-                                    const x = item.preset.name;
+                                    const x = item.name;
                                     switch (x) {
                                         case "color":
                                             a = "Kolor";
@@ -52,11 +52,11 @@ export default function Presets() {
                                                  () => applyPreset(item)
                                              }
                                              className={"items-center bg-[#202129] px-[16px] py-[12px] rounded-lg flex gap-[16px] cursor-pointer hover:bg-[#2C2E3D] transition-all"}>
-                                            <label className={"flex-grow font-[500] pointer-events-none"}>{item.title}</label>
+                                            <label className={"flex-grow font-[500] pointer-events-none"}>{item.header}</label>
                                             <label className={"text-[#9198A2] text-[13px] font-[500]"}>Tryb: {a}</label>
-                                            <div>
+                                            <button>
                                                 Usuń
-                                            </div>
+                                            </button>
                                         </div>
                                     )
                                 })

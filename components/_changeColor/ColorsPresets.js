@@ -93,7 +93,6 @@ export default function ColorPresets() {
         , [devices[selectedDevice].colorPreset.settings.hue, devices[selectedDevice].colorPreset.settings.lighting])
 
 
-
     return (
         <div>
             <div>

@@ -79,9 +79,9 @@ export default function Devices() {
                 </div>
             </div>
 
-            <pre>
-                {JSON.stringify(devices, null, 2)}
-            </pre>
+            {/*<pre>*/}
+            {/*    {JSON.stringify(devices, null, 2)}*/}
+            {/*</pre>*/}
 
 
         </>

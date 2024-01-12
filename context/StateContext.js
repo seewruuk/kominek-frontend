@@ -43,25 +43,13 @@ export default function StateContextProvider({children}) {
             },
             savedColorPresets: [
                 {
-                   title: "Nazwa to wyświetlenia / 00",
-                    preset: {
-                        name: "color",
-                        settings: {
-                            lighting: 0,
-                            hue: 0,
-                        }
+                    header: "Preset #1",
+                    name: "color",
+                    settings: {
+                        lighting: 0,
+                        hue: 0,
                     }
                 },
-                {
-                    title: "Nazwa to wyświetlenia #2",
-                    preset: {
-                        name: "wave",
-                        settings: {
-                            lighting: 100,
-                            hue: 360,
-                        }
-                    }
-                }
             ]
         }
     ])
@@ -80,8 +68,32 @@ export default function StateContextProvider({children}) {
     };
 
     const applyPreset = (item) => {
-        let newDevices = [...devices];
-        newDevices[selectedDevice].colorPreset = item.preset;
+        const newDevices = [...devices];
+        const selectedDeviceData = newDevices[selectedDevice];
+
+        // Update colorPreset property of the selected device
+        selectedDeviceData.colorPreset = { ...item };
+
+        // Check if savedColorPresets property exists for the selected device
+        // if (selectedDeviceData.hasOwnProperty('savedColorPresets')) {
+        //     // Update savedColorPresets array by inserting the previous colorPreset at the beginning
+        //     selectedDeviceData.savedColorPresets.unshift({
+        //         header: "Preset #1",
+        //         name: selectedDeviceData.colorPreset.name,
+        //         settings: selectedDeviceData.colorPreset.settings
+        //     });
+        // } else {
+        //     // Create savedColorPresets array if it doesn't exist
+        //     selectedDeviceData.savedColorPresets = [
+        //         {
+        //             header: "Preset #1",
+        //             name: selectedDeviceData.colorPreset.name,
+        //             settings: selectedDeviceData.colorPreset.settings
+        //         }
+        //     ];
+        // }
+
+        // Update the devices state with the modified device
         setDevices(newDevices);
     }
 
