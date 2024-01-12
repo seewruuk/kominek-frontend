@@ -91,8 +91,8 @@ export default function Presets() {
                             }
 
                             return (
-                                <div className={"flex w-full gap-2"}>
-                                    <div key={index}
+                                <div className={"flex w-full gap-2"} key={index}>
+                                    <div
                                          onClick={
                                              () => applyPreset(item)
                                          }
