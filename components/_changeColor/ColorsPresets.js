@@ -74,14 +74,25 @@ export default function ColorPresets() {
     }
 
     const handleHueChange = (e) => {
+        const newHue = e.target.value;
         let newDevices = [...devices];
-        newDevices[selectedDevice].colorPreset.settings.hue = e.target.value;
-        setDevices(newDevices);
+        let deviceToUpdate = newDevices[selectedDevice];
+
+        if (deviceToUpdate && deviceToUpdate.colorPreset && deviceToUpdate.colorPreset.settings) {
+            deviceToUpdate.colorPreset.settings.hue = parseInt(newHue);
+            setDevices(newDevices);
+        }
     }
+
     const handleLightingChange = (e) => {
+        const newLighting = e.target.value;
         let newDevices = [...devices];
-        newDevices[selectedDevice].colorPreset.settings.lighting = e.target.value;
-        setDevices(newDevices);
+        let deviceToUpdate = newDevices[selectedDevice];
+
+        if (deviceToUpdate && deviceToUpdate.colorPreset && deviceToUpdate.colorPreset.settings) {
+            deviceToUpdate.colorPreset.settings.lighting = parseInt(newLighting);
+            setDevices(newDevices);
+        }
     }
 
     //create useEffect that change color of color-slider background based on hue value

@@ -23,16 +23,16 @@ export default function ChangeColor() {
                             exit={{opacity: 0}}
                         >
                             <motion.div
-                                className={"bg-[#13131A] absolute bottom-0 w-full h-3/4 z-50 rounded-md px-[15px] py-[32px]"}
+                                className={"bg-[#13131A] absolute bottom-0 w-full h-3/4 z-50 rounded-md px-[15px] pt-[32px] pb-[200px] overflow-y-scroll"}
                                 initial={{y: "100%"}}
                                 animate={{y: "0%"}}
                                 exit={{y: "100%"}}
                                 transition={{duration: .5, ease: "easeInOut"}}
                             >
 
-                                <ColorPresets/>
+                                    <ColorPresets/>
 
-                                <Presets/>
+                                    <Presets/>
 
 
                             </motion.div>

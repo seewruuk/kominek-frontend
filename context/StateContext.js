@@ -23,7 +23,8 @@ export default function StateContextProvider({children}) {
                     lighting: 30,
                     hue: 120,
                 }
-            }
+            },
+            savedPresets: []
         },
         {
             name: "Nazwa pieca #2",
@@ -41,7 +42,7 @@ export default function StateContextProvider({children}) {
                     hue: 320,
                 }
             },
-            savedColorPresets: [
+            savedPresets: [
                 {
                     header: "Preset #1",
                     name: "color",
@@ -67,35 +68,7 @@ export default function StateContextProvider({children}) {
         setDevices(newDevices);
     };
 
-    const applyPreset = (item) => {
-        const newDevices = [...devices];
-        const selectedDeviceData = newDevices[selectedDevice];
 
-        // Update colorPreset property of the selected device
-        selectedDeviceData.colorPreset = { ...item };
-
-        // Check if savedColorPresets property exists for the selected device
-        // if (selectedDeviceData.hasOwnProperty('savedColorPresets')) {
-        //     // Update savedColorPresets array by inserting the previous colorPreset at the beginning
-        //     selectedDeviceData.savedColorPresets.unshift({
-        //         header: "Preset #1",
-        //         name: selectedDeviceData.colorPreset.name,
-        //         settings: selectedDeviceData.colorPreset.settings
-        //     });
-        // } else {
-        //     // Create savedColorPresets array if it doesn't exist
-        //     selectedDeviceData.savedColorPresets = [
-        //         {
-        //             header: "Preset #1",
-        //             name: selectedDeviceData.colorPreset.name,
-        //             settings: selectedDeviceData.colorPreset.settings
-        //         }
-        //     ];
-        // }
-
-        // Update the devices state with the modified device
-        setDevices(newDevices);
-    }
 
     return (
         <StateContext.Provider
@@ -109,7 +82,6 @@ export default function StateContextProvider({children}) {
                 updateDeviceTemperature,
                 showChangeColorComponent,
                 setShowChangeColorComponent,
-                applyPreset
             }}>
             {children}
         </StateContext.Provider>
