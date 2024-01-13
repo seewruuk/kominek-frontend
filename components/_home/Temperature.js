@@ -116,6 +116,57 @@ const TemperatureControl = () => {
         setTemperature(presetTemperature);
     }
 
+    const handleEventCoordinates = (event) => {
+        const clientX = event.clientX || event.touches[0].clientX;
+        const clientY = event.clientY || event.touches[0].clientY;
+        return { clientX, clientY };
+    };
+
+    const handleStart = (event) => {
+        setIsDragging(true);
+        const { clientX, clientY } = handleEventCoordinates(event);
+        const angle = calculateAngle(clientX, clientY);
+        setTemperature(angleToTemperature(angle));
+    };
+
+    const handleMove = (event) => {
+        if (!isDragging) return;
+        const { clientX, clientY } = handleEventCoordinates(event);
+        setTemperature(angleToTemperature(calculateAngle(clientX, clientY)));
+    };
+
+    const handleEnd = () => {
+        setIsDragging(false);
+        document.removeEventListener('mousemove', handleMove);
+        document.removeEventListener('mouseup', handleEnd);
+        document.removeEventListener('touchmove', handleMove);
+        document.removeEventListener('touchend', handleEnd);
+    };
+
+
+    useEffect(() => {
+        const handleRefCurrent = handleRef.current;
+        if (handleRefCurrent) {
+            handleRefCurrent.addEventListener('mousedown', handleStart);
+            handleRefCurrent.addEventListener('touchstart', handleStart);
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            document.addEventListener('touchmove', handleMove);
+            document.addEventListener('touchend', handleEnd);
+        }
+
+        return () => {
+            if (handleRefCurrent) {
+                handleRefCurrent.removeEventListener('mousedown', handleStart);
+                handleRefCurrent.removeEventListener('touchstart', handleStart);
+                document.removeEventListener('mousemove', handleMove);
+                document.removeEventListener('mouseup', handleEnd);
+                document.removeEventListener('touchmove', handleMove);
+                document.removeEventListener('touchend', handleEnd);
+            }
+        };
+    }, [isDragging]);
+
 
     return (
         <>
