@@ -27,13 +27,13 @@ $Crimson: crimson;
 
 .rainbow-range::-webkit-slider-runnable-track {
   width: 100%;
-  height: 5px;
+  height: 8px;
   background: linear-gradient(to right, $red, $orange, $yellow, $lime, $green,$Turquoise,$Cyan,$Blue,$Violet,$Magenta,$Crimson,$red);
   border-radius: 15px;
 }
 .color-range::-webkit-slider-runnable-track{
   width: 100%;
-  height: 5px;
+  height: 8px;
   //background: red;
   border-radius: 15px;
 }
@@ -41,8 +41,8 @@ $Crimson: crimson;
 .rainbow-range::-webkit-slider-thumb, .color-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: none;
-  height: 14px;
-  width: 14px;
+  height: 17px;
+  width: 17px;
   border-radius: 50%;
   background: rgba(255,255,255,0.8);
   margin-top: -5px;
