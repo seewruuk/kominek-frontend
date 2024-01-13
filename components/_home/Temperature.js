@@ -182,7 +182,7 @@ const TemperatureControl = () => {
     return (
         <>
 
-            <div className="bg-[#1C1D24] rounded-md flex justify-center py-5">
+            <div className="bg-[#1C1D24] rounded-md flex justify-center py-5 relative">
                 <svg width="230" height="240" viewBox="0 0 200 200" ref={circleRef}>
                     <circle cx="100" cy="100" r={radius} stroke="#2B2B37" strokeWidth={strokeWidth} fill="none"/>
                     <circle cx="100" cy="100" r={radius} stroke="#18E8B7" strokeWidth={strokeWidth} fill="none"
@@ -196,9 +196,10 @@ const TemperatureControl = () => {
                             strokeWidth={"5"}
 
                     />
-                    <text x="50%" y="50%" textAnchor="middle" dy="-1.2rem" fill={"#fff"} fontSize={"12px"}>
-                        Temperatura
-                    </text>
+                    {/*<text x="50%" y="50%" textAnchor="middle" dy="-1.2rem" fill={"#fff"} fontSize={"12px"}*/}
+                    {/*>*/}
+                    {/*    Temperatura*/}
+                    {/*</text>*/}
                     <text x="50%" y="50%" textAnchor="middle" dy="1rem" dx="-0px" fill={"#fff"} fontSize={"38px"}>
                         {
                             temperature
@@ -208,6 +209,9 @@ const TemperatureControl = () => {
                     {/*    °C*/}
                     {/*</text>*/}
                 </svg>
+                <div className={"absolute top-1/3"}>
+                    Temperatura
+                </div>
             </div>
 
 
