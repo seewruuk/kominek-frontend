@@ -200,31 +200,36 @@ const TemperatureControl = () => {
                     {/*>*/}
                     {/*    Temperatura*/}
                     {/*</text>*/}
-                    <text x="50%" y="50%" textAnchor="middle" dy="1rem" dx="-0px" fill={"#fff"} fontSize={"38px"}>
-                        {
-                            temperature
-                        }°C
-                    </text>
+                    {/*<text x="50%" y="50%" textAnchor="middle" dy="1rem" dx="-0px" fill={"#fff"} fontSize={"38px"}>*/}
+                    {/*    {*/}
+                    {/*        temperature*/}
+                    {/*    }°C*/}
+                    {/*</text>*/}
                     {/*<text x="50%" y="50%" textAnchor="middle" dy="0rem" dx="2.5rem" fill={"#fff"} fontSize={"19px"}>*/}
                     {/*    °C*/}
                     {/*</text>*/}
                 </svg>
-                <div className={"absolute top-1/3"}>
-                    Temperatura
+                <div className={"absolute top-[103px] flex flex-col"}>
+                    <p>Temperatura</p>
+                    <p style={{
+                        lineHeight: "1",
+                    }}>
+                        <span className={"text-[38px] font-[500]"}>{temperature}°C</span>
+                    </p>
                 </div>
             </div>
 
 
             <div className={"mt-[21px] text-[14px] font-[500]"}>
                 <p className={"text-greyTextColor"}>Szybki wybór</p>
-                <div className={"flex justify-between gap-[6px] mt-[6px]"}>
+                <div className={`flex justify-between gap-[6px] mt-[6px]`}>
                     {
                         presets.map((preset) => {
                             return (
                                 <button
                                     type={"button"}
                                     key={preset.id}
-                                    className={`bg-[#1C1D24] w-full text-center py-[6px] rounded-md cursor-pointer`}
+                                    className={`transition-all bg-[#1C1D24] w-full text-center py-[16px] rounded-md cursor-pointer hover:bg-accentColor`}
                                     onClick={handleInsertPreset}>
                                     {preset.value}
                                 </button>

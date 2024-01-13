@@ -35,8 +35,8 @@ export default function ChangeColor() {
                                 <div className={"py-[24px] flex justify-between items-center"}>
                                     <div
                                         onClick={() => setShowChangeColorComponent(false)}
-                                        className={"aspect-square bg-backgroundLightColor grid place-items-center p-3 rounded-lg hover:bg-accentColor transition-all cursor-pointer"}>
-                                        <Image src={Icon} alt={"icon"} width={20} height={20} className={"pointer-events-none"}/>
+                                        className={"aspect-square bg-backgroundLightColor flex items-center justify-center p-3 rounded-lg hover:bg-accentColor transition-all cursor-pointer"}>
+                                        <Image src={Icon} alt={"icon"} width={15} height={20} className={"pointer-events-none"}/>
                                     </div>
                                     <div className={"flex-grow text-center text-[14px] font-bold"}>
                                         {

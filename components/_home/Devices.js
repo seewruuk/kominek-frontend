@@ -24,8 +24,8 @@ export default function Devices() {
                                 <div
                                     onClick={() => setSelectedDevice(index)}
                                     key={index}
-                                    className={`bg-[#202129] border-2 p-[24px] rounded-2xl transition-all ${
-                                        index === selectedDevice ? "border-[#18E8B7]" : "border-[#3B3E50]"
+                                    className={`border-2 p-[24px] rounded-2xl transition-all ${
+                                        index === selectedDevice ? "border-[#18E8B7]" : "border-[#3B3E50] bg-[#202129]"
                                     }`}>
                                     <div className={"flex justify-between"}>
                                         <h1 className={"font-[700] text-[20px]"}>
@@ -52,8 +52,12 @@ export default function Devices() {
                                     </div>
 
                                     <div className={"mt-[16px]"}>
-                                        <p className={"text-[#18E8B7] text-[16px] font-[400]"}>{item.desc}</p>
-                                        <p>
+                                        <p className={`text-[#18E8B7] text-[16px] font-[400] transition-all ${
+                                            item.status === 1 ? "text-[#18E8B7]" : "text-[#9198A2]"
+                                        }`}>{item.desc}</p>
+                                        <p className={`transition-all ${
+                                            item.status === 1 ? "text-white" : "text-red-500"
+                                        }`}>
                                             <span className={"font-[500]"}>Status: </span>
                                             <span className={""}>
                                                 {item.status === 1 ? "Włączony" : "Wyłączony"}
