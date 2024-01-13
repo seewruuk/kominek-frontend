@@ -37,6 +37,15 @@ const TemperatureControl = () => {
             selected: false,
         },
     ])
+
+    const disableScroll = () => {
+        document.body.style.overflow = 'hidden';
+    };
+
+    const enableScroll = () => {
+        document.body.style.overflow = 'unset';
+    };
+
     useEffect(() => {
         setTemperature(devices[selectedDevice].temperature)
     }, [selectedDevice]);
@@ -124,6 +133,7 @@ const TemperatureControl = () => {
 
     const handleStart = (event) => {
         setIsDragging(true);
+        disableScroll();
         const { clientX, clientY } = handleEventCoordinates(event);
         const angle = calculateAngle(clientX, clientY);
         setTemperature(angleToTemperature(angle));
@@ -137,6 +147,7 @@ const TemperatureControl = () => {
 
     const handleEnd = () => {
         setIsDragging(false);
+        enableScroll();
         document.removeEventListener('mousemove', handleMove);
         document.removeEventListener('mouseup', handleEnd);
         document.removeEventListener('touchmove', handleMove);
