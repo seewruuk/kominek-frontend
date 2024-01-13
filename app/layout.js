@@ -19,7 +19,7 @@ const pretendard = localFont({
 export default function RootLayout({children}) {
     return (
         <html lang="pl">
-        <body className={`${pretendard.variable}`}>
+        <body className={`${pretendard.variable} relative`}>
         <StateContextProvider>
             {children}
         </StateContextProvider>

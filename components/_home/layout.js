@@ -9,7 +9,7 @@ export default function Layout() {
         <>
             <Header/>
 
-            <div className={"min-h-screen px-[15px] flex flex-col"}>
+            <div className={"px-[15px] flex flex-col"}>
 
                 <ChangeColor/>
 
