@@ -68,9 +68,10 @@ export default function Devices() {
                                     <div className={"mt-[16px] flex justify-between items-center "}>
                                         <p className={"text-[#9198A2]"}>Kolor płomienia</p>
                                         <button
-                                            className={"px-4 rounded-full bg-[#2E3040] flex gap-3 py-2 cursor-pointer "}
+                                            className={"px-4 rounded-full bg-[#2E3040] flex gap-3 py-2 cursor-pointer"}
                                             onClick={() => setShowChangeColorComponent(true)}
-                                        >Zmień kolor
+                                        >
+                                            Zmień kolor
                                         </button>
 
 

@@ -2,6 +2,7 @@ import '../public/styles/main.scss'
 import localFont from 'next/font/local'
 import StateContextProvider from "@/context/StateContext";
 import Header from "@/components/header/Header";
+import Navigation from "@/components/Navigation/Navigation";
 
 
 export const metadata = {
@@ -22,6 +23,8 @@ export default function RootLayout({children}) {
         <body className={`${pretendard.variable} relative`}>
         <StateContextProvider>
             {children}
+
+            <Navigation/>
         </StateContextProvider>
         </body>
         </html>
