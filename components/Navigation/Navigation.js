@@ -29,11 +29,11 @@ export default function Navigation() {
 
     return (
         <div className={"fixed bottom-[30px] w-screen"}>
-            <div className={"bg-[#0D0D13] mx-[15px] flex justify-between px-5 py-5 rounded-lg gap-3"}>
+            <div className={"bg-[#0D0D13] mx-[15px] flex justify-between p-3 rounded-lg gap-3"}>
                 {
                     collection.map((item, index) => {
                         return (
-                            <Link href={item.href} className={"flex flex-col gap-2 justify-center items-center bg-[#09090C] px-5 py-4 rounded-lg flex-1 hover:bg-accentColor transition-all group"}>
+                            <Link href={item.href} className={"flex flex-col gap-2 justify-center items-center  px-5 py-4 rounded-lg flex-1 hover:bg-[#09090C] transition-all"}>
                                 <Image src={item.icon} alt={item.title} width={21} height={21} className={""}/>
                                 <span className={"text-[13px]"}>{item.title}</span>
                             </Link>
