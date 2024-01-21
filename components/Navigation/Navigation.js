@@ -33,8 +33,8 @@ export default function Navigation() {
                 {
                     collection.map((item, index) => {
                         return (
-                            <Link key={index} href={item.href} className={"flex flex-col gap-2 justify-center items-center  px-5 py-4 rounded-lg flex-1 hover:bg-[#09090C] transition-all"}>
-                                <Image src={item.icon} alt={item.title} width={21} height={21} className={""}/>
+                            <Link key={index} href={item.href} className={"flex flex-col gap-2 justify-center items-center py-2 rounded-lg flex-1 hover:bg-[#09090C] transition-all"}>
+                                {/*<Image src={item.icon} alt={item.title} width={21} height={21} className={""}/>*/}
                                 <span className={"text-[13px]"}>{item.title}</span>
                             </Link>
                         )
