@@ -31,6 +31,7 @@ const Calendar = ({year, month}) => {
     // Przykładowe zaplanowane wydarzenia
     const events = [6, 10, 17, 24, 25]; // dni z wydarzeniami
 
+
     return (
         <div className="inline-block bg-[#13131A] text-white rounded-lg py-5 w-full">
             <div className="grid grid-cols-7 gap-1 text-[11px]">
@@ -43,6 +44,7 @@ const Calendar = ({year, month}) => {
                     <div key={index}
                          className={`rounded-md flex items-center justify-center h-10 relative cursor-pointer ${index < firstDay || index >= firstDay + daysInMonth ? 'bg-[#17171E]' : 'bg-[#202129]'}`}>
                         {day}
+
                         {
                             events.includes(day) && (
                                 <span className={"absolute top-1.5 right-1.5 rounded-full h-[5px] w-[5px] bg-accentColor"}/>
@@ -64,6 +66,19 @@ export default function CurrentMonthCalendar() {
     const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth())
     const [month, setMonth] = useState("");
     const [loading, setLoading] = useState(true);
+
+    const newEvents = [
+        {
+            date: "2024-01-06",
+            title: "Po pracy",
+            hour: "18:00",
+        },
+        {
+            date: "2024-02-11",
+            title: "Po pracy 2",
+            hour: "12:00",
+        }
+    ]
 
     useEffect(() => {
         switch (currentMonth) {
@@ -148,13 +163,13 @@ export default function CurrentMonthCalendar() {
             }
 
 
-            <Header/>
+            {/*<Header/>*/}
 
             <section className={"flex justify-center mt-[42px] mb-[12px]"}>
                 <div
                     className={"py-[32px] w-full px-[21px] bg-[#202129] rounded-2xl flex flex-col justify-center items-center"}>
                     <p className={"text-greyTextColor"}>Harmonogram zadań</p>
-                    <p className={"text-[52px] flex items-center gap-2 font-[600]"}>12<span
+                    <p className={"text-[52px] flex items-center gap-2 font-[600]"}>{newEvents.length}<span
                         className={"text-[14px] text-accentColor"}>łącznie</span></p>
                 </div>
             </section>
@@ -175,7 +190,7 @@ export default function CurrentMonthCalendar() {
             </section>
 
             <section>
-                <Calendar year={currentYear} month={currentMonth}/>
+                <Calendar year={currentYear} month={currentMonth} newEvents={newEvents}/>
 
             </section>
 

@@ -119,7 +119,7 @@ export default function PowerUsage() {
     return (
 
         <>
-            <Header/>
+            {/*<Header/>*/}
 
             <section className={"flex gap-4 my-5 items-center justify-center"}>
                 {
@@ -138,7 +138,7 @@ export default function PowerUsage() {
                 }
             </section>
 
-            <section className={"flex justify-center mt-[42px] mb-[12px]"}>
+            <section className={"flex justify-center mt-[22px] mb-[12px]"}>
                 <div className={"py-[32px] w-full px-[21px] bg-[#202129] rounded-2xl flex flex-col justify-center items-center"}>
                     <p className={"text-greyTextColor"}>Zużycie prądu</p>
                     <p className={"text-[52px] flex items-center gap-2 font-[600]"}>{currentValue} <span className={"text-[14px] text-accentColor"}>kwh</span></p>

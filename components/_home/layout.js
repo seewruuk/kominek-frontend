@@ -8,9 +8,9 @@ import Navigation from "@/components/Navigation/Navigation";
 export default function Layout() {
     return (
         <>
-            <Header/>
+            {/*<Header/>*/}
 
-            <div className={"px-[15px] flex flex-col pb-[150px]"}>
+            <div className={"px-[15px] flex flex-col pb-[150px] pt-[15px]"}>
 
                 <ChangeColor/>
 
