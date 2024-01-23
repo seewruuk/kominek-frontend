@@ -75,6 +75,14 @@ export default function StateContextProvider({children}) {
                         hue: 0,
                     }
                 },
+            ],
+            calendarData : [
+                {
+                    id : 1,
+                    date : "2024-01-25",
+                    time : "12:00",
+                    presetName: "preset #1",
+                },
             ]
         }
     ])

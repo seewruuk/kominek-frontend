@@ -22,6 +22,7 @@ export default function Page() {
     const sendMessage = (text) => {
         const newMessage = {id: messages.length + 1, text, sender: 'user'};
         setMessages([...messages, newMessage]);
+        setMessage("");
     };
 
 
