@@ -49,6 +49,7 @@ export default function SaveNewData({selectedDate}) {
                                         devices[selectedDevice].savedPresets ? devices[selectedDevice].savedPresets.map((preset, index) => {
                                             return (
                                                 <div
+                                                    key={index}
                                                     onClick={() => {
                                                         let newDevices = [...devices];
                                                         let deviceToUpdate = newDevices[selectedDevice];
