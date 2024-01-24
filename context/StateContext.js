@@ -36,7 +36,15 @@ export default function StateContextProvider({children}) {
                     data: [41.2, 50.2, 45.4, 50.1, 48.3, 45.4, 39.4, 46.9, 42.8, 32.8, 57.3, 58.8] // wygenerowane wartości w kWh dla miesiąca
                 }
             ],
-            savedPresets: []
+            savedPresets: [],
+            calendarData : [
+                {
+                    id : 1,
+                    date : "2024-01-04",
+                    time : "16:00",
+                    presetName: "preset #2",
+                },
+            ]
         },
         {
             name: "Nazwa pieca #2",
@@ -83,11 +91,18 @@ export default function StateContextProvider({children}) {
                     time : "12:00",
                     presetName: "preset #1",
                 },
+                {
+                    id : 2,
+                    date : "2024-01-26",
+                    time : "12:00",
+                    presetName: "preset #2",
+                },
             ]
         }
     ])
     const [selectedDevice, setSelectedDevice] = useState(0);
     const [showChangeColorComponent, setShowChangeColorComponent] = useState(false);
+    const [showSaveNewDataComponent, setShowSaveNewDataComponent] = useState(false);
     const [powerUsageData, setPowerUsageData] = useState(0);
 
     const changeDeviceStatus = (index) => {
@@ -117,7 +132,9 @@ export default function StateContextProvider({children}) {
                 setShowChangeColorComponent,
 
                 powerUsageData,
-                setPowerUsageData
+                setPowerUsageData,
+                showSaveNewDataComponent,
+                setShowSaveNewDataComponent,
             }}>
             {children}
         </StateContext.Provider>

@@ -1,9 +1,15 @@
 "use client"
 import Header from "@/components/header/Header";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {StateContext} from "@/context/StateContext";
+import SaveNewData from "@/components/_calendar/SaveNewData";
 
-const Calendar = ({year, month}) => {
+const Calendar = ({year, month, setSelectedDate}) => {
     // Pobieranie pierwszego dnia miesiąca według polskiego formatu
+
+
+    const {devices, selectedDevice, setShowSaveNewDataComponent} = useContext(StateContext);
+
     const firstDay = new Date(year, month).getDay() - 1;
 
     // Pobieranie liczby dni w miesiącu
@@ -28,8 +34,21 @@ const Calendar = ({year, month}) => {
         days.push(i);
     }
 
-    // Przykładowe zaplanowane wydarzenia
-    const events = [6, 10, 17, 24, 25]; // dni z wydarzeniami
+
+    const isDateInCurrentMonth = (dateString) => {
+        const date = new Date(dateString);
+        return date.getFullYear() === year && date.getMonth() === month;
+    };
+
+    let events = [];
+    const selectedDeviceCalendarData = devices[selectedDevice]?.calendarData || [];
+
+    selectedDeviceCalendarData.forEach(event => {
+        if (isDateInCurrentMonth(event.date)) {
+            const day = new Date(event.date).getDate();
+            events.push(day);
+        }
+    });
 
 
     return (
@@ -42,6 +61,10 @@ const Calendar = ({year, month}) => {
             <div className="grid grid-cols-7 gap-1">
                 {days.map((day, index) => (
                     <div key={index}
+                        onClick={() => {
+                            setShowSaveNewDataComponent(true)
+                            setSelectedDate(`${day}.${month + 1}.${year}`)
+                        }}
                          className={`rounded-md flex items-center justify-center h-10 relative cursor-pointer ${index < firstDay || index >= firstDay + daysInMonth ? 'bg-[#17171E]' : 'bg-[#202129]'}`}>
                         {day}
 
@@ -66,19 +89,8 @@ export default function CurrentMonthCalendar() {
     const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth())
     const [month, setMonth] = useState("");
     const [loading, setLoading] = useState(true);
+    const {devices, selectedDevice} = useContext(StateContext);
 
-    const newEvents = [
-        {
-            date: "2024-01-06",
-            title: "Po pracy",
-            hour: "18:00",
-        },
-        {
-            date: "2024-02-11",
-            title: "Po pracy 2",
-            hour: "12:00",
-        }
-    ]
 
     useEffect(() => {
         switch (currentMonth) {
@@ -149,9 +161,13 @@ export default function CurrentMonthCalendar() {
         }
     }, [currentDate]);
 
+    const [selectedDate, setSelectedDate] = useState(null);
+
 
     return (
         <>
+            <SaveNewData selectedDate={selectedDate}/>
+
 
             {
                 loading ? (
@@ -169,8 +185,9 @@ export default function CurrentMonthCalendar() {
                 <div
                     className={"py-[32px] w-full px-[21px] bg-[#202129] rounded-2xl flex flex-col justify-center items-center"}>
                     <p className={"text-greyTextColor"}>Harmonogram zadań</p>
-                    <p className={"text-[52px] flex items-center gap-2 font-[600]"}>{newEvents.length}<span
-                        className={"text-[14px] text-accentColor"}>łącznie</span></p>
+                    <p className={"text-[52px] flex items-center gap-2 font-[600]"}>
+                        {devices[selectedDevice].calendarData.length}
+                        <span className={"text-[14px] text-accentColor"}>łącznie</span></p>
                 </div>
             </section>
 
@@ -190,10 +207,65 @@ export default function CurrentMonthCalendar() {
             </section>
 
             <section>
-                <Calendar year={currentYear} month={currentMonth} newEvents={newEvents}/>
+                <Calendar year={currentYear} month={currentMonth} setSelectedDate={setSelectedDate}/>
+            </section>
+            <section>
+                <p className={"text-greyTextColor mb-[8px] text-[14px]"}>Zaplanowane zadania</p>
+                <div className={"mt-[8px]"}>
+                    {
+                        devices[selectedDevice].calendarData.map((event, index) => {
+
+
+                            const convertDate = (date) => {
+                                const dateObj = new Date(date);
+                                const day = dateObj.getDate();
+                                const month = dateObj.getMonth() + 1;
+                                const year = dateObj.getFullYear();
+                                return `${day}.${
+                                    month < 10 ? `0${month}` : `${month}`
+                                }.${year}`
+                            }
+
+                            return (
+                                <div
+                                    key={index}
+                                    className={`border-2 p-[24px] rounded-2xl transition-all border-[#3B3E50] bg-[#202129]`}>
+                                    <div className={"flex flex-col"}>
+                                        <div className={"flex justify-between"}>
+                                            <h1 className={"font-[700] text-[20px]"}>
+                                                {event.presetName}
+                                            </h1>
+                                            <div className={"flex gap-2"}>
+                                                {/*<button>Edytuj</button>*/}
+                                                <button
+                                                    className={`px-4 rounded-full bg-[#2E3040] flex gap-3 py-2 cursor-pointer text-[12px]`}
+
+                                                >
+                                                    Usuń
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className={"mt-[8px]"}>
+                                            <p className={`text-[#18E8B7] text-[16px] font-[400] transition-all`}>{convertDate(event.date)}</p>
+                                            <p className={`transition-all text-[#9198A2]`}>
+                                                <span className={"font-[600]"}>Godzina: </span>
+                                                <span className={""}>
+                                                {event.time}
+                                            </span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
 
             </section>
-
         </>
     )
 }
