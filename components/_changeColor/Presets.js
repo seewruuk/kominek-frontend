@@ -146,8 +146,8 @@ export default function Presets() {
             <SavePreset/>
 
             <div>
-                <div className={"flex justify-between py-6 font-[500]"}>
-                    <label>Zapisane</label>
+                <div className={"flex justify-between py-6 font-[500] items-center"}>
+                    <p className={"text-greyTextColor text-[14px]"}>Zapisane</p>
                     <label>
                         {
                             devices[selectedDevice].savedPresets ? devices[selectedDevice].savedPresets.length : 0

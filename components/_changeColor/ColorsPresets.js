@@ -15,8 +15,8 @@ export default function ColorPresets() {
             icon: null,
             isSelected: false,
             settings: {
-                lighting: 10,
-                hue: 0
+                lighting: 50,
+                hue: 180
             }
         },
         {
@@ -25,8 +25,8 @@ export default function ColorPresets() {
             icon: null,
             isSelected: false,
             settings: {
-                lighting: 10,
-                hue: 0
+                lighting: 50,
+                hue: 180
             }
         },
         {
@@ -35,8 +35,8 @@ export default function ColorPresets() {
             icon: null,
             isSelected: false,
             settings: {
-                lighting: 10,
-                hue: 0
+                lighting: 50,
+                hue: 180
             }
         },
         {
@@ -45,8 +45,8 @@ export default function ColorPresets() {
             icon: null,
             isSelected: false,
             settings: {
-                lighting: 10,
-                hue: 0
+                lighting: 50,
+                hue: 180
             }
         }
     ]
@@ -107,7 +107,8 @@ export default function ColorPresets() {
     return (
         <div>
             <div>
-                <h2 className={"text-[15px] font-[500]"}>Tryb naświetlenia</h2>
+                <p className={"text-greyTextColor text-[14px]"}>Tryb naświetlenia</p>
+
                 <div className={"mt-[16px]"}>
                     <div className={"flex gap-2"}>
                         {
@@ -118,9 +119,9 @@ export default function ColorPresets() {
                                          className={`flex-1 flex justify-center items-center flex-col gap-3 bg-[#202129] py-5 rounded-md cursor-pointer transition-all ${
                                              item.isSelected ? "border-2 border-[#18E8B7] bg-[#0F0F15] shadow-2xl" : "border-2 border-[#3B3E50]"
                                          }`}>
-                                        <Image src={
-                                            item.icon ? item.icon : PlaceholderIcon
-                                        } alt={"Icon"} width={18} height={18}/>
+                                        {/*<Image src={*/}
+                                        {/*    item.icon ? item.icon : PlaceholderIcon*/}
+                                        {/*} alt={"Icon"} width={18} height={18}/>*/}
                                         <p className={"text-[12px]"}>
                                             {
                                                 item.title
