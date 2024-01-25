@@ -10,7 +10,7 @@ export default function Layout() {
         <>
             {/*<Header/>*/}
 
-            <div className={"px-[15px] flex flex-col pb-[150px] pt-[42px]"}>
+            <div className={"px-[15px] flex flex-col pb-[150px] pt-[15px]"}>
 
                 <ChangeColor/>
 

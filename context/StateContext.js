@@ -8,7 +8,7 @@ export const StateContext = createContext({});
 
 export default function StateContextProvider({children}) {
 
-    const initialData = Cookies.get("data") ? JSON.parse(decodeURIComponent(Cookies.get("data"))) : [
+    const initialData = [
         {
             name: "FIRE-K20S2",
             temperature: 21.5,
@@ -102,7 +102,19 @@ export default function StateContextProvider({children}) {
         }
     ];
 
-    const [devices, setDevices] = useState(initialData)
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [devices, setDevices] = useState([])
+
+    useEffect(() => {
+        const savedData = Cookies.get("data");
+        if (savedData) {
+            setDevices(JSON.parse(decodeURIComponent(savedData)));
+        } else {
+            setDevices(initialData);
+        }
+        setIsLoading(false);
+    }, []);
 
 
     useEffect(() => {
@@ -113,10 +125,33 @@ export default function StateContextProvider({children}) {
     }, []);
 
     useEffect(() => {
-        if (typeof window !== "undefined" && devices.length > 0) {
+        const handleCookieChange = () => {
+            const savedData = Cookies.get("data");
+            if (savedData) {
+                const parsedData = JSON.parse(decodeURIComponent(savedData));
+                if (JSON.stringify(parsedData) !== JSON.stringify(devices)) {
+                    setDevices(parsedData);
+                }
+            }
+        };
+
+        // Listen for cookie changes
+        window.addEventListener('cookiechange', handleCookieChange);
+
+        return () => {
+            window.removeEventListener('cookiechange', handleCookieChange);
+        };
+    }, [devices]);
+
+
+    useEffect(() => {
+        // Ta funkcja zostanie wywołana za każdym razem, gdy zmieni się stan urządzeń.
+        if (devices.length > 0) {
+            // Aktualizacja danych cookie
             Cookies.set("data", JSON.stringify(devices));
         }
     }, [devices]);
+
 
 
     const [selectedDevice, setSelectedDevice] = useState(0);
@@ -167,6 +202,7 @@ export default function StateContextProvider({children}) {
 
                 showSetNameAndDescComponent,
                 setShowSetNameAndDescComponent,
+                isLoading,
             }}>
             {children}
         </StateContext.Provider>

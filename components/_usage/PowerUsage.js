@@ -120,7 +120,7 @@ export default function PowerUsage() {
             {/*<Header/>*/}
 
 
-            <section className={"flex justify-center mt-[42px] mb-[12px]"}>
+            <section className={"flex justify-center mt-[15px] mb-[12px]"}>
                 <div
                     className={"py-[32px] w-full px-[21px] bg-[#202129] rounded-2xl flex flex-col justify-center items-center"}>
                     <p className={"text-greyTextColor"}>Zużycie prądu</p>

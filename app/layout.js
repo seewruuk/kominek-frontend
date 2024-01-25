@@ -22,6 +22,7 @@ export default function RootLayout({children}) {
         <html lang="pl">
         <body className={`${pretendard.variable} relative`}>
         <StateContextProvider>
+
             {children}
 
             <Navigation/>
