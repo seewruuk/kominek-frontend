@@ -104,7 +104,7 @@ export default function StateContextProvider({children}) {
 
 
     const [isLoading, setIsLoading] = useState(true);
-    const [devices, setDevices] = useState([])
+    const [devices, setDevices] = useState(initialData);
 
     useEffect(() => {
         const savedData = Cookies.get("data");
