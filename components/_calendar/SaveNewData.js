@@ -2,15 +2,20 @@
 import {AnimatePresence, motion} from "framer-motion";
 import Image from "next/image";
 import Icon from "@/public/assets/ic_back.svg";
-import ColorPresets from "@/components/_changeColor/ColorsPresets";
-import Presets from "@/components/_changeColor/Presets";
 import {StateContext} from "@/context/StateContext";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 
 export default function SaveNewData({selectedDate}) {
 
-    const {devices, selectedDevice, showSaveNewDataComponent, setShowSaveNewDataComponent,setDevices} = useContext(StateContext);
+    const {
+        devices,
+        selectedDevice,
+        showSaveNewDataComponent,
+        setShowSaveNewDataComponent,
+        setDevices
+    } = useContext(StateContext);
 
+    const [time, setTime] = useState("12:00");
 
 
     return (
@@ -42,6 +47,12 @@ export default function SaveNewData({selectedDate}) {
                                     </div>
                                 </div>
 
+                                <p className={"text-greyTextColor mb-[8px] text-[14px]"}>Wybierz godzine</p>
+                                <input type={"time"}
+                                       value={time}
+                                       onChange={(e) => setTime(e.target.value)}
+                                       className={"bg-[#202129] px-[16px] py-[12px] rounded-lg text-greyTextColor text-[14px] w-full mb-4"}/>
+
                                 <p className={"text-greyTextColor mb-[8px] text-[14px]"}>Wybierz preset</p>
 
                                 <div className={"flex flex-col gap-4"}>
@@ -58,29 +69,26 @@ export default function SaveNewData({selectedDate}) {
                                                         let month = convertedDate.split("-")[1];
                                                         let day = convertedDate.split("-")[2];
 
-                                                        if(month < 10){
+                                                        if (month < 10) {
                                                             month = "0" + month;
                                                         }
-                                                        if(day < 10){
+                                                        if (day < 10) {
                                                             day = "0" + day;
                                                         }
                                                         convertedDate = convertedDate.split("-")[0] + "-" + month + "-" + day;
 
 
-
-
-
-
-
                                                         if (deviceToUpdate) {
                                                             deviceToUpdate.calendarData.push({
                                                                 date: convertedDate,
-                                                                time : "12:00",
+                                                                time: time,
                                                                 presetName: preset.header,
                                                             });
 
                                                             setDevices(newDevices);
                                                         }
+                                                        setShowSaveNewDataComponent(false);
+
                                                     }
                                                     }
                                                     className={"text-center bg-[#202129] px-[16px] py-[12px] rounded-lg gap-[16px] cursor-pointer hover:bg-[#2C2E3D] transition-all"}>
@@ -90,19 +98,7 @@ export default function SaveNewData({selectedDate}) {
                                         }) : null
                                     }
                                 </div>
-
-                                <label>
-                                    <pre>
-                                        {
-                                            JSON.stringify(devices[selectedDevice].calendarData, null, 2)
-                                        }
-
-                                    </pre>
-                                </label>
-
-
                             </motion.div>
-
 
 
                         </motion.div>

@@ -26,9 +26,8 @@ body{
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: calc(100dvh - 100px);
+    height: calc(100dvh - 85px);
     background-color: $backgroundColor;
-    padding-bottom: 20px;
 }
 
 .messages-container {

@@ -26,9 +26,7 @@ export default function PowerUsage() {
     const [currentValue, setCurrentValue] = useState(devices[selectedDevice].powerUsageData[powerUsageData].data[0]);
 
     const handleClick = (label, value) => {
-        console.log(`Kliknięto punkt: ${label}, wartość: ${value}`);
         setCurrentValue(value);
-        // Tutaj możesz wykonać więcej operacji...
     };
 
     const data = {
@@ -121,6 +119,26 @@ export default function PowerUsage() {
         <>
             {/*<Header/>*/}
 
+
+            <section className={"flex justify-center mt-[42px] mb-[12px]"}>
+                <div
+                    className={"py-[32px] w-full px-[21px] bg-[#202129] rounded-2xl flex flex-col justify-center items-center"}>
+                    <p className={"text-greyTextColor"}>Zużycie prądu</p>
+                    <p className={"text-[52px] flex items-center gap-2 font-[600]"}>{currentValue} <span
+                        className={"text-[14px] text-accentColor"}>kwh</span></p>
+                </div>
+            </section>
+
+
+            <section className={"bg-[#202129] p-5 rounded-2xl"}>
+
+                {
+                    loading ? <div
+                            className={"w-full h-60 bg-[#202129] animate-pulse grid place-items-center"}>Ładowanie...</div> :
+                        <Line data={data} options={options}/>
+                }
+            </section>
+
             <section className={"flex gap-4 my-5 items-center justify-center"}>
                 {
                     powerUsageProfiles.map((profile, index) => {
@@ -135,23 +153,6 @@ export default function PowerUsage() {
                             </button>
                         )
                     })
-                }
-            </section>
-
-            <section className={"flex justify-center mt-[22px] mb-[12px]"}>
-                <div className={"py-[32px] w-full px-[21px] bg-[#202129] rounded-2xl flex flex-col justify-center items-center"}>
-                    <p className={"text-greyTextColor"}>Zużycie prądu</p>
-                    <p className={"text-[52px] flex items-center gap-2 font-[600]"}>{currentValue} <span className={"text-[14px] text-accentColor"}>kwh</span></p>
-                </div>
-            </section>
-
-
-            <section className={"bg-[#202129] p-5 rounded-2xl"}>
-
-                {
-                    loading ? <div
-                            className={"w-full h-60 bg-[#202129] animate-pulse grid place-items-center"}>Ładowanie...</div> :
-                        <Line data={data} options={options}/>
                 }
             </section>
 

@@ -10,7 +10,7 @@ export default function Layout() {
         <>
             {/*<Header/>*/}
 
-            <div className={"px-[15px] flex flex-col pb-[150px] pt-[15px]"}>
+            <div className={"px-[15px] flex flex-col pb-[150px] pt-[42px]"}>
 
                 <ChangeColor/>
 
@@ -18,7 +18,6 @@ export default function Layout() {
 
                 <Devices/>
 
-                {/*<Navigation/>*/}
             </div>
 
             {/*<Menu/>*/}

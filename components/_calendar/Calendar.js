@@ -5,31 +5,23 @@ import {StateContext} from "@/context/StateContext";
 import SaveNewData from "@/components/_calendar/SaveNewData";
 
 const Calendar = ({year, month, setSelectedDate}) => {
-    // Pobieranie pierwszego dnia miesiąca według polskiego formatu
 
 
     const {devices, selectedDevice, setShowSaveNewDataComponent} = useContext(StateContext);
 
     const firstDay = new Date(year, month).getDay() - 1;
 
-    // Pobieranie liczby dni w miesiącu
     const daysInMonth = new Date(year, month + 1, 0).getDate() - 1;
-    // Pobieranie liczby dni w poprzednim miesiącu
     const daysInLastMonth = new Date(year, month, 0).getDate();
-    // Wyznaczanie dnia tygodnia dla ostatniego dnia miesiąca
     const lastDay = new Date(year, month, daysInMonth).getDay() - 1;
 
-    // Przygotowanie danych dla kalendarza
     const days = [];
-    // Dodawanie ostatnich dni poprzedniego miesiąca
     for (let i = firstDay; i > 0; i--) {
         days.push(daysInLastMonth - i + 1);
     }
-    // Dodawanie dni obecnego miesiąca
     for (let i = 1; i <= daysInMonth; i++) {
         days.push(i);
     }
-    // Uzupełnienie dni następnego miesiąca
     for (let i = 1; i < 7 - lastDay; i++) {
         days.push(i);
     }
@@ -58,18 +50,21 @@ const Calendar = ({year, month, setSelectedDate}) => {
                     <div key={day} className="flex items-center justify-center h-10">{day}</div>
                 ))}
             </div>
+
+
             <div className="grid grid-cols-7 gap-1">
                 {days.map((day, index) => (
                     <div key={index}
-                        onClick={() => {
-                            setShowSaveNewDataComponent(true)
-                            setSelectedDate(`${day}.${month + 1}.${year}`)
-                        }}
+                         onClick={() => {
+                             setShowSaveNewDataComponent(true)
+                             setSelectedDate(`${day}.${month + 1}.${year}`)
+                         }}
                          className={`rounded-md flex items-center justify-center h-10 relative cursor-pointer ${index < firstDay || index >= firstDay + daysInMonth ? 'bg-[#17171E]' : 'bg-[#202129]'}`}>
                         {day}
 
                         {
-                            events.includes(day) && (
+                            // Check if the day is part of the current month and if it has an event
+                            index >= firstDay && index < firstDay + daysInMonth && events.includes(day) && (
                                 <span className={"absolute top-1.5 right-1.5 rounded-full h-[5px] w-[5px] bg-accentColor"}/>
                             )
                         }
@@ -77,6 +72,8 @@ const Calendar = ({year, month, setSelectedDate}) => {
                     </div>
                 ))}
             </div>
+
+
         </div>
     );
 };
@@ -89,7 +86,7 @@ export default function CurrentMonthCalendar() {
     const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth())
     const [month, setMonth] = useState("");
     const [loading, setLoading] = useState(true);
-    const {devices, selectedDevice} = useContext(StateContext);
+    const {devices, selectedDevice, setDevices} = useContext(StateContext);
 
 
     useEffect(() => {
@@ -163,6 +160,13 @@ export default function CurrentMonthCalendar() {
 
     const [selectedDate, setSelectedDate] = useState(null);
 
+   //create function to remove event from device by index
+    const removeEventFromDeviceByIndex = (index) => {
+        const newDevices = [...devices];
+        newDevices[selectedDevice].calendarData.splice(index, 1);
+        setDevices(newDevices);
+    }
+
 
     return (
         <>
@@ -211,7 +215,7 @@ export default function CurrentMonthCalendar() {
             </section>
             <section>
                 <p className={"text-greyTextColor mb-[8px] text-[14px]"}>Zaplanowane zadania</p>
-                <div className={"mt-[8px]"}>
+                <div className={"mt-[8px] flex flex-col gap-2"}>
                     {
                         devices[selectedDevice].calendarData.map((event, index) => {
 
@@ -236,10 +240,9 @@ export default function CurrentMonthCalendar() {
                                                 {event.presetName}
                                             </h1>
                                             <div className={"flex gap-2"}>
-                                                {/*<button>Edytuj</button>*/}
                                                 <button
                                                     className={`px-4 rounded-full bg-[#2E3040] flex gap-3 py-2 cursor-pointer text-[12px]`}
-
+                                                    onClick={(()=>removeEventFromDeviceByIndex(index))}
                                                 >
                                                     Usuń
                                                 </button>
@@ -256,6 +259,8 @@ export default function CurrentMonthCalendar() {
                                             </p>
                                         </div>
                                     </div>
+
+
 
 
                                 </div>

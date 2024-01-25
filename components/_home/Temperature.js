@@ -240,9 +240,6 @@ const TemperatureControl = () => {
                 </div>
             </div>
 
-            {/*<pre>*/}
-            {/*    {JSON.stringify(devices, null, 2)}*/}
-            {/*</pre>*/}
 
         </>
 

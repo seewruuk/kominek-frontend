@@ -9,7 +9,7 @@ export default function StateContextProvider({children}) {
 
     const [devices, setDevices] = useState([
         {
-            name: "Nazwa pieca #1",
+            name: "FIRE-K20S2",
             temperature: 21.5,
             desc: "Kominek W sypialni",
             status: 1,
@@ -37,17 +37,17 @@ export default function StateContextProvider({children}) {
                 }
             ],
             savedPresets: [],
-            calendarData : [
+            calendarData: [
                 {
-                    id : 1,
-                    date : "2024-01-04",
-                    time : "16:00",
+                    id: 1,
+                    date: "2024-01-04",
+                    time: "16:00",
                     presetName: "preset #2",
                 },
             ]
         },
         {
-            name: "Nazwa pieca #2",
+            name: "FIRE-WK1LMS",
             temperature: 23,
             desc: "Salon",
             status: 0,
@@ -84,17 +84,17 @@ export default function StateContextProvider({children}) {
                     }
                 },
             ],
-            calendarData : [
+            calendarData: [
                 {
-                    id : 1,
-                    date : "2024-01-25",
-                    time : "12:00",
+                    id: 1,
+                    date: "2024-01-25",
+                    time: "12:00",
                     presetName: "preset #1",
                 },
                 {
-                    id : 2,
-                    date : "2024-01-26",
-                    time : "12:00",
+                    id: 2,
+                    date: "2024-01-26",
+                    time: "12:00",
                     presetName: "preset #2",
                 },
             ]
@@ -104,6 +104,14 @@ export default function StateContextProvider({children}) {
     const [showChangeColorComponent, setShowChangeColorComponent] = useState(false);
     const [showSaveNewDataComponent, setShowSaveNewDataComponent] = useState(false);
     const [powerUsageData, setPowerUsageData] = useState(0);
+    const [showNamePreset, setShowNamePreset] = useState({
+        status: false,
+        preset : null,
+    });
+    const [showSetNameAndDescComponent, setShowSetNameAndDescComponent] = useState({
+        status: false,
+        device: {},
+    });
 
     const changeDeviceStatus = (index) => {
         let newDevices = [...devices];
@@ -135,6 +143,11 @@ export default function StateContextProvider({children}) {
                 setPowerUsageData,
                 showSaveNewDataComponent,
                 setShowSaveNewDataComponent,
+                showNamePreset,
+                setShowNamePreset,
+
+                showSetNameAndDescComponent,
+                setShowSetNameAndDescComponent,
             }}>
             {children}
         </StateContext.Provider>

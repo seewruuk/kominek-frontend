@@ -26,7 +26,7 @@ export default function ChangeColor() {
                         >
 
                             <motion.div
-                                className={"bg-[#13131A] absolute bottom-0 w-full h-screen z-50 rounded-md px-[15px] pt-[32px] pb-[200px] overflow-y-scroll"}
+                                className={"bg-[#13131A] absolute bottom-0 w-full h-screen z-40 rounded-md px-[15px] pt-[32px] pb-[200px] overflow-y-scroll"}
                                 initial={{y: "100%"}}
                                 animate={{y: "0%"}}
                                 exit={{y: "100%"}}
@@ -36,7 +36,8 @@ export default function ChangeColor() {
                                     <div
                                         onClick={() => setShowChangeColorComponent(false)}
                                         className={"aspect-square bg-backgroundLightColor flex items-center justify-center p-3 rounded-lg hover:bg-accentColor transition-all cursor-pointer"}>
-                                        <Image src={Icon} alt={"icon"} width={15} height={20} className={"pointer-events-none"}/>
+                                        <Image src={Icon} alt={"icon"} width={15} height={20}
+                                               className={"pointer-events-none"}/>
                                     </div>
                                     <div className={"flex-grow text-center text-[14px] font-bold"}>
                                         {

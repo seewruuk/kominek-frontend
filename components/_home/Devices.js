@@ -1,6 +1,114 @@
 "use client"
 import {StateContext} from "@/context/StateContext";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
+import {AnimatePresence, motion} from "framer-motion";
+
+
+const SetNameAndDescription = () => {
+
+
+    const {
+        devices,
+        selectedDevice,
+        setDevices,
+        showSetNameAndDescComponent,
+        setShowSetNameAndDescComponent
+    } = useContext(StateContext);
+
+    const [name, setName] = useState( "");
+    const [desc, setDesc] = useState("");
+
+    useEffect(() => {
+      if(showSetNameAndDescComponent.status){
+          setName(showSetNameAndDescComponent.device.name);
+          setDesc(showSetNameAndDescComponent.device.desc);
+      }
+    }, [showSetNameAndDescComponent.status]);
+
+
+    return (
+        <>
+            <AnimatePresence>
+                {
+                    showSetNameAndDescComponent.status ? (
+                        <motion.div
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
+                            exit={{opacity: 0}}
+                            className={"fixed h-screen w-full top-0 left-0 right-0 bottom-0 z-50 isolate flex justify-center items-center"}
+                        >
+                            <div className={"z-50 absolute w-full px-10"}>
+                                <div
+                                    className={"text-black bg-backgroundColor flex flex-col gap-6 p-8 rounded-2xl focus:outline-none"}>
+                                    <div>
+                                        <p className={"text-white mb-2"}>Nazwa kominka</p>
+                                        <input type={"text"}
+                                               placeholder={"Podaj nazwę..."}
+                                               className={"z-60 p-3 rounded-md bg-[#202129] text-white focus:outline-none"}
+                                               maxLength={20}
+                                               value={name}
+                                               onChange={
+                                                   (e) => {
+                                                       setName(e.target.value);
+                                                   }
+                                               }
+
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <p className={"text-white mb-2"}>Opis kominka</p>
+
+                                        <input type={"text"}
+                                               placeholder={"Podaj nazwę..."}
+                                               className={"z-60 p-3 rounded-md bg-[#202129] text-white focus:outline-none"}
+                                               maxLength={20}
+                                               value={desc}
+                                               onChange={
+                                                   (e) => {
+                                                       setDesc(e.target.value);
+                                                   }
+                                               }
+                                        />
+
+                                    </div>
+
+                                    <button
+                                        className={"w-full bg-accentColor text-black text-[14px] font-[600] py-2 rounded-md"}
+                                        onClick={() => {
+                                            let newDevices = [...devices];
+                                            newDevices[selectedDevice].name = name;
+                                            newDevices[selectedDevice].desc = desc;
+                                            setDevices(newDevices);
+                                            setShowSetNameAndDescComponent({
+                                                status: false,
+                                                item: {}
+                                            });
+                                        }}
+                                    >
+                                        Zapisz
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div
+                                className={"fixed top-0 left-0 right-0 bottom-0 bg-black opacity-90 backdrop-blur-md z-20"}
+                                onClick={() =>
+                                    setShowSetNameAndDescComponent({
+                                        status: false,
+                                        item: {}
+                                    })
+                                }
+                            />
+                        </motion.div>
+                    ) : null
+                }
+            </AnimatePresence>
+
+        </>
+    )
+}
+
 
 export default function Devices() {
 
@@ -9,12 +117,17 @@ export default function Devices() {
         selectedDevice,
         setSelectedDevice,
         changeDeviceStatus,
-        setShowChangeColorComponent
+        setShowChangeColorComponent,
+        setShowSetNameAndDescComponent
     } = useContext(StateContext)
 
 
     return (
         <>
+
+            <SetNameAndDescription/>
+
+
             <div className={"mt-[21px] text-[14px] font-[500]"}>
                 <p className={"text-greyTextColor mb-[8px]"}>Urządzenia</p>
                 <div className={"flex flex-col gap-2"}>
@@ -28,7 +141,17 @@ export default function Devices() {
                                         index === selectedDevice ? "border-[#18E8B7]" : "border-[#3B3E50] bg-[#202129]"
                                     }`}>
                                     <div className={"flex justify-between"}>
-                                        <h1 className={"font-[700] text-[20px]"}>
+                                        <h1 className={"font-[700] text-[20px]"}
+                                            onClick={() => {
+                                                setShowSetNameAndDescComponent({
+                                                    status: true,
+                                                    device: {
+                                                        name: item.name,
+                                                        desc: item.desc,
+                                                    }
+                                                })
+                                            }}
+                                        >
                                             {item.name}
                                         </h1>
                                         <div>

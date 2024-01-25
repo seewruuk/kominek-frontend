@@ -6,7 +6,7 @@ export default function Navigation() {
 
     const collection = [
         {
-            title: "Home",
+            title: "Główna",
             icon: PlaceholderIcon,
             href: "/"
         },
@@ -16,20 +16,20 @@ export default function Navigation() {
             href: "/contact"
         },
         {
-            title: "Usage",
+            title: "Moc",
             icon: PlaceholderIcon,
             href: "/usage"
         },
         {
-            title: "Calendar",
+            title: "Kalendarz",
             icon: PlaceholderIcon,
             href: "/calendar"
         }
     ]
 
     return (
-        <div className={"fixed bottom-[30px] w-screen"}>
-            <div className={"bg-[#0D0D13] mx-[15px] flex justify-between p-3 rounded-lg gap-3"}>
+        <div className={"fixed bottom-0 w-screen"}>
+            <div className={"bg-[#0D0D13] flex justify-between px-3 py-5 gap-3 shadow-2xl shadow-accentColor"}>
                 {
                     collection.map((item, index) => {
                         return (
