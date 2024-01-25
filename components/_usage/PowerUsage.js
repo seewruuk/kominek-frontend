@@ -157,7 +157,8 @@ export default function PowerUsage() {
             </section>
 
             <section className={"mt-5"}>
-                <p className={"text-greyTextColor mb-[8px]"}>Urządzenia</p>
+                <p className={"text-greyTextColor mb-[8px] text-[14px]"}>Urządzenia</p>
+
                 {
                     devices.map((item, index) => {
                         return (
@@ -169,9 +170,6 @@ export default function PowerUsage() {
                                 `}>
                                     {item.name}
 
-                                    {/*{*/}
-                                    {/*    devices[index].powerUsageData[powerUsageData].data[0]*/}
-                                    {/*}*/}
                                 </button>
                             </div>
                         )

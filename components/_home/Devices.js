@@ -37,14 +37,14 @@ const SetNameAndDescription = () => {
                             exit={{opacity: 0}}
                             className={"fixed h-screen w-full top-0 left-0 right-0 bottom-0 z-50 isolate flex justify-center items-center"}
                         >
-                            <div className={"z-50 absolute w-full px-10"}>
+                            <div className={"z-50 absolute w-full px-5"}>
                                 <div
-                                    className={"text-black bg-backgroundColor flex flex-col gap-6 p-8 rounded-2xl focus:outline-none"}>
+                                    className={"text-black bg-backgroundColor flex flex-col gap-6 p-5 rounded-2xl focus:outline-none"}>
                                     <div>
                                         <p className={"text-white mb-2"}>Nazwa kominka</p>
                                         <input type={"text"}
                                                placeholder={"Podaj nazwę..."}
-                                               className={"z-60 p-3 rounded-md bg-[#202129] text-white focus:outline-none"}
+                                               className={"z-60 p-3 rounded-md bg-[#202129] text-white focus:outline-none w-full"}
                                                maxLength={20}
                                                value={name}
                                                onChange={
@@ -61,7 +61,7 @@ const SetNameAndDescription = () => {
 
                                         <input type={"text"}
                                                placeholder={"Podaj nazwę..."}
-                                               className={"z-60 p-3 rounded-md bg-[#202129] text-white focus:outline-none"}
+                                               className={"z-60 p-3 rounded-md bg-[#202129] text-white focus:outline-none w-full"}
                                                maxLength={20}
                                                value={desc}
                                                onChange={

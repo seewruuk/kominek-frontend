@@ -1,4 +1,8 @@
 import PlaceholderIcon from "../../public/assets/placeholder-icon.svg"
+import HomeIcon from "../../public/assets/home.svg"
+import ContactIcon from "../../public/assets/paper-plane.svg"
+import CalendarIcon from "../../public/assets/calendar.svg"
+import StatIcon from "../../public/assets/stats.svg"
 import Link from "next/link";
 import Image from "next/image";
 
@@ -7,22 +11,22 @@ export default function Navigation() {
     const collection = [
         {
             title: "Główna",
-            icon: PlaceholderIcon,
+            icon: HomeIcon,
             href: "/"
         },
         {
             title: "Kontakt",
-            icon: PlaceholderIcon,
+            icon: ContactIcon,
             href: "/contact"
         },
         {
             title: "Moc",
-            icon: PlaceholderIcon,
+            icon: StatIcon,
             href: "/usage"
         },
         {
             title: "Kalendarz",
-            icon: PlaceholderIcon,
+            icon: CalendarIcon,
             href: "/calendar"
         }
     ]
@@ -33,9 +37,8 @@ export default function Navigation() {
                 {
                     collection.map((item, index) => {
                         return (
-                            <Link key={index} href={item.href} className={"flex flex-col gap-2 justify-center items-center py-2 rounded-lg flex-1 hover:bg-[#09090C] transition-all"}>
-                                {/*<Image src={item.icon} alt={item.title} width={21} height={21} className={""}/>*/}
-                                <span className={"text-[13px]"}>{item.title}</span>
+                            <Link key={index} href={item.href} className={"bg-backgroundColor aspect-video flex flex-col gap-2 justify-center items-center rounded-lg flex-1 transition-all"}>
+                                <Image className={"nav-icon"}src={item.icon} alt={item.title} width={21} height={21}/>
                             </Link>
                         )
                     })

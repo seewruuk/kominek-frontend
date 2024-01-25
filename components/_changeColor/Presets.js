@@ -49,11 +49,11 @@ const SavePreset = () => {
                         >
                             <div className={"z-50 absolute w-full px-10"}>
                                 <div
-                                    className={"text-black bg-backgroundColor flex flex-col gap-2 p-8 rounded-2xl focus:outline-none"}>
+                                    className={"text-black bg-backgroundColor flex flex-col gap-2 p-5 rounded-2xl focus:outline-none"}>
                                     <p className={"text-white"}>Nazwa presetu</p>
                                     <input type={"text"} value={name} placeholder={"Podaj nazwę..."}
                                            onChange={handleNameChange}
-                                           className={"z-60 p-3 rounded-md bg-[#202129] text-white focus:outline-none"}
+                                           className={"z-60 p-3 rounded-md bg-[#202129] text-white focus:outline-none w-full"}
                                             maxLength={20}
                                     />
                                     <button className={"w-full bg-accentColor text-black text-[14px] font-[600] py-2 rounded-md"}

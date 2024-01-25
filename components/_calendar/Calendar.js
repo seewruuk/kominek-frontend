@@ -3,6 +3,10 @@ import Header from "@/components/header/Header";
 import {useContext, useEffect, useState} from "react";
 import {StateContext} from "@/context/StateContext";
 import SaveNewData from "@/components/_calendar/SaveNewData";
+import ArrowRight from "@/public/assets/arrow-small-right.svg";
+import ArrowLeft from "@/public/assets/arrow-small-left.svg";
+import Image from "next/image";
+
 
 const Calendar = ({year, month, setSelectedDate}) => {
 
@@ -202,11 +206,11 @@ export default function CurrentMonthCalendar() {
 
                 <button className={"py-1 px-3 bg-backgroundLightColor  rounded-full"}
                         onClick={decreaseMonth}>
-                    p
+                    <Image className={"nav-icon"} src={ArrowLeft} alt={"arrow left"} width={15} height={15} />
                 </button>
                 <button className={"py-1 px-3 bg-backgroundLightColor  rounded-full"}
                         onClick={increaseMonth}>
-                    n
+                    <Image className={"nav-icon"} src={ArrowRight} alt={"arrow left"} width={15} height={15}/>
                 </button>
             </section>
 
