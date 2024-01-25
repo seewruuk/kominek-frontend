@@ -1,13 +1,14 @@
 "use client"
 
 import {createContext, useEffect, useState} from "react";
+import Cookies from "js-cookie";
 
 export const StateContext = createContext({});
 
 
 export default function StateContextProvider({children}) {
 
-    const [devices, setDevices] = useState([
+    const initialData = Cookies.get("data") ? JSON.parse(decodeURIComponent(Cookies.get("data"))) : [
         {
             name: "FIRE-K20S2",
             temperature: 21.5,
@@ -99,14 +100,32 @@ export default function StateContextProvider({children}) {
                 },
             ]
         }
-    ])
+    ];
+
+    const [devices, setDevices] = useState(initialData)
+
+
+    useEffect(() => {
+        const savedData = Cookies.get("data");
+        if (savedData) {
+            setDevices(JSON.parse(decodeURIComponent(savedData)));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && devices.length > 0) {
+            Cookies.set("data", JSON.stringify(devices));
+        }
+    }, [devices]);
+
+
     const [selectedDevice, setSelectedDevice] = useState(0);
     const [showChangeColorComponent, setShowChangeColorComponent] = useState(false);
     const [showSaveNewDataComponent, setShowSaveNewDataComponent] = useState(false);
     const [powerUsageData, setPowerUsageData] = useState(0);
     const [showNamePreset, setShowNamePreset] = useState({
         status: false,
-        preset : null,
+        preset: null,
     });
     const [showSetNameAndDescComponent, setShowSetNameAndDescComponent] = useState({
         status: false,
