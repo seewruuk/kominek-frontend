@@ -1,5 +1,5 @@
 "use client"
-import PlaceholderIcon from "../../public/assets/placeholder-icon.svg"
+import PlaceholderIcon from "../../public/assets/arrow-small-right.svg"
 import Image from "next/image";
 import {useEffect, useRef, useState} from "react";
 
@@ -58,14 +58,14 @@ export default function Page() {
                             }
                         }}
                     />
-                    <span className={"p-3 bg-accentColor rounded-md"}
-                        onClick={() => {
-                            sendMessage(message);
-                            setMessage('');
-                        }}
-                    >
-                        <Image src={PlaceholderIcon} alt={"placeholder-icon"} width={12} height={12}/>
-                    </span>
+                    {/*<span className={"p-3 bg-accentColor rounded-md"}*/}
+                    {/*    onClick={() => {*/}
+                    {/*        sendMessage(message);*/}
+                    {/*        setMessage('');*/}
+                    {/*    }}*/}
+                    {/*>*/}
+                    {/*    <Image src={PlaceholderIcon} alt={"placeholder-icon"} width={15} height={15}/>*/}
+                    {/*</span>*/}
                 </form>
 
             </div>
